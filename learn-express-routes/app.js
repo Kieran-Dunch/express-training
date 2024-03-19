@@ -16,10 +16,11 @@ app.listen(PORT, () => {
 // Use static server to serve the Express Yourself Website
 app.use(express.static('public'));
 
+const expressions = [];
 // Open a call to `app.get()` below:
 app.get('/expressions', (req, res, next) => {
   console.log(req);
-  // res.send(expressions);
+  res.send(expressions);
 });
 
 

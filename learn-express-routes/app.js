@@ -24,6 +24,13 @@ app.get('/expressions', (req, res, next) => {
 });
 
 
+// Running this program in terminal will start the server and log the message to the console.
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
+});
+
+// dynamic routes
+app.get('/expressions/:id', (req, res, next) => {
+  const id = req.params.id;
+  res.send(expressions[id]);
 });

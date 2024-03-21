@@ -34,3 +34,17 @@ app.get('/expressions/:id', (req, res, next) => {
   const id = req.params.id;
   res.send(expressions[id]);
 });
+
+
+// the res object has a method called status() that can be used to send the appropriate status code.
+// for example, if we want to send a 404 status code when a client requests a non-existent expression, we can use the following code:
+app.get('/expressions/:id', (req, res, next) => {
+  const id = Number(req.params.id);
+  const expressionToSend = expressions[id];
+  if (expressionToSend) {
+    res.send(expressionToSend);
+  } else {
+    // client receives a 404 status code
+    res.status(404).send();
+  }
+});

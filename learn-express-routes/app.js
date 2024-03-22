@@ -48,3 +48,17 @@ app.get('/expressions/:id', (req, res, next) => {
     res.status(404).send();
   }
 });
+
+// PUT request
+// A PUT request updates an existing resource.
+// A PUT request requires an identifier for the resource being updated.
+app.put('/expressions/:id', (req, res, next) => {
+  const id = Number(req.params.id);
+  expressions[id] = req.query.expression;
+  res.send(expressions[id]);
+});
+
+
+
+// POST request
+// DELETE request

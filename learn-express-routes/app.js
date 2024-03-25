@@ -52,10 +52,15 @@ app.get('/expressions/:id', (req, res, next) => {
 // PUT request
 // A PUT request updates an existing resource.
 // A PUT request requires an identifier for the resource being updated.
+// Express parses a query section of your url into an object called req.query.
 app.put('/expressions/:id', (req, res, next) => {
-  const id = Number(req.params.id);
-  expressions[id] = req.query.expression;
-  res.send(expressions[id]);
+  const expressionIndex = getIndexById(req.params.id, expressions);
+  if (expressionIndex !== -1) {
+    updateElement(req.params.id, req.query, expressions);
+    res.send(expressions[expressionIndex]);
+  } else {
+    res.status(404).send();
+  }
 });
 
 
